@@ -1,0 +1,9 @@
+# Ignore IDEA
+.idea
+
+# Ignore data output
+/ray/data
+
+# Mac sys file
+.DS_store
+
