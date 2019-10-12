@@ -173,14 +173,24 @@ public class Bvh implements AccelStruct {
 		
 		// ==== Step 4 ====
 		// Sort surfaces according to the widest dimension.
-		for (int i = start; i< end; i++) {
-			for (int j = end - 1; j > i; j--) {
-				if (surfaces[j].averagePosition.get(widestDim) > surfaces[j-1].averagePosition.get(widestDim)) {
-					Surface temp = surfaces[j];
-					surfaces[j] = surfaces[j - 1];
-					surfaces[j - 1] = temp;
-				}
-			}
+		// Bubble Sort
+
+//		for (int i = start; i< end; i++) {
+//			for (int j = end - 1; j > i; j--) {
+//				if (surfaces[j].averagePosition.get(widestDim) > surfaces[j-1].averagePosition.get(widestDim)) {
+//					Surface temp = surfaces[j];
+//					surfaces[j] = surfaces[j - 1];
+//					surfaces[j - 1] = temp;
+//				}
+//			}
+//		}
+		//HeapSort
+		Surface[] tempArr = Arrays.copyOfRange(surfaces, start, end);
+		heapSort(tempArr, widestDim);
+		int count = 0;
+		for (int i=start; i<end; i++) {
+			surfaces[i] = tempArr[count];
+			count += 1;
 		}
 
 
@@ -191,7 +201,50 @@ public class Bvh implements AccelStruct {
 
 		return node;
 	}
-	
+
+	private static void heapify(Surface[] array, int length, int i, int dim) {
+		int leftChild = 2*i+1;
+		int rightChild = 2*i+2;
+		int largest = i;
+
+		// if the left child is larger than parent
+		if (leftChild < length && array[leftChild].averagePosition.get(dim) < array[largest].averagePosition.get(dim)) {
+			largest = leftChild;
+		}
+
+		// if the right child is larger than parent
+		if (rightChild < length && array[rightChild].averagePosition.get(dim) < array[largest].averagePosition.get(dim)) {
+			largest = rightChild;
+		}
+
+		// if a swap needs to occur
+		if (largest != i) {
+			Surface temp = array[i];
+			array[i] = array[largest];
+			array[largest] = temp;
+			heapify(array, length, largest, dim);
+		}
+	}
+
+	public static void heapSort(Surface[] array, int dim) {
+		if (array.length == 0) return;
+
+		// Building the heap
+		int length = array.length;
+		// we're going from the first non-leaf to the root
+		for (int i = length / 2-1; i >= 0; i--)
+			heapify(array, length, i, dim);
+
+		for (int i = length-1; i >= 0; i--) {
+			Surface temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
+
+			heapify(array, i, 0, dim);
+		}
+	}
+
+
 	private int maxDepth(BvhNode node) {
 		if (node.isLeaf())
 			return 0;
