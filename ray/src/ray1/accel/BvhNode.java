@@ -1,5 +1,6 @@
 package ray1.accel;
 
+import egl.math.Vector3;
 import ray1.Ray;
 import egl.math.Vector3d;
 
@@ -85,8 +86,34 @@ public class BvhNode {
 	public boolean intersects(Ray ray) {
 		// TODO#Ray Part 2 Task 3: fill in this function.
 		// You can find this in the slides.
-		
+		double tXEnter, tXExit, tXMin, tXMax;
+		double tYEnter, tYExit, tYMin, tYMax;
+		double tZEnter, tZExit, tZMin, tZMax;
+		double tEnter, tExit;
 
-		return false;
+		Vector3d dir = ray.direction.clone().normalize();
+		Vector3d ori = ray.origin.clone();
+
+		tXMin = dir.x == 0 ? 1f/0 : (this.minBound.x - ori.x) / dir.x;
+		tXMax = dir.x == 0 ? 1f/0 : (this.maxBound.x - ori.x) / dir.x;
+		tYMin = dir.y == 0 ? 1f/0 : (this.minBound.y - ori.y) / dir.y;
+		tYMax = dir.y == 0 ? 1f/0 : (this.maxBound.y - ori.y) / dir.y;
+		tZMin = dir.z == 0 ? 1f/0 : (this.minBound.z - ori.z) / dir.z;
+		tZMax = dir.z == 0 ? 1f/0 : (this.maxBound.z - ori.z) / dir.z;
+
+		tXEnter = Math.min(tXMin,tXMax);
+		tXExit = Math.max(tXMin, tXMax);
+		tYEnter = Math.min(tYMin,tYMax);
+		tYExit = Math.max(tYMin, tYMax);
+		tZEnter = Math.min(tZMin,tZMax);
+		tZExit = Math.max(tZMin, tZMax);
+
+		if ((tXEnter > tYExit) || (tYEnter > tXExit)) return false;
+		tEnter = tYEnter > tXEnter ? tYEnter : tXEnter;
+		tExit = tYExit > tXExit ? tXExit : tYExit;
+
+		if ((tEnter > tZExit) || (tExit < tZEnter)) return false;
+
+		return true;
 	}
 }

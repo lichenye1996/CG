@@ -65,7 +65,32 @@ public abstract class ReflectionShader extends Shader {
 				//      6c) Compute the Fresnel's refectance coefficient with Schlick's approximation 
 				// 		6d) call RayTracer.shadeRay() with the mirror reflection ray and (depth+1)
 				// 		6e) add returned color value in 6d) to output
-		
+		for (Light light : scene.getLights()) {
+			Ray checkRay = new Ray();
+			Vector3d positionD = new Vector3d(light.position.x, light.position.y, light.position.z);
+			checkRay.set(record.location.clone(), positionD.clone().sub(record.location.clone()).normalize());
+			checkRay.makeOffsetSegment(positionD.clone().sub(record.location.clone()).len());
+			if (scene.getAnyIntersection(checkRay)) continue;
+			incoming.set(positionD.clone().sub(record.location.clone()));
+			if (incoming.dot(surfaceNormal) < 0 || outgoing.dot(surfaceNormal) < 0) continue;
+
+			Colorf tempColor = new Colorf();
+			brdf.EvalBRDF(incoming.clone(), outgoing.clone(), surfaceNormal.clone(), texCoords.clone(), tempColor);
+			BRDFVal.set(BRDFVal.clone().add(tempColor.clone().mul(light.intensity)));
+		}
+		if (getMirrorCoefficient().len() > 0 && depth <= 12) {
+			Vector3d reflection = surfaceNormal.clone().mul(2 * surfaceNormal.clone().dot(outgoing.clone().normalize())).sub(outgoing.clone().normalize());
+			double cos = 1 - reflection.clone().dot(surfaceNormal.clone())/(reflection.len()*surfaceNormal.len());
+			Vector3 Rth = mirrorCoefficient.clone().add(mirrorCoefficient.clone().sub(1, 1, 1).negate().mul((float)Math.pow(cos, 5)));
+			Colorf recursive = new Colorf();
+			Ray reflectRay = new Ray();
+			reflectRay.set(record.location, reflection.clone().normalize());
+			reflectRay.makeOffsetRay();
+			RayTracer.shadeRay(recursive, scene, reflectRay, depth + 1);
+			outIntensity.set(recursive.clone().mul(Rth));
+		}
+
+		outIntensity.set(outIntensity.clone().add(BRDFVal));
 	
 		// recursive reflection
 
