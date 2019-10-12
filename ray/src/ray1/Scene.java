@@ -143,9 +143,9 @@ public class Scene {
 	 * @return true if any intersection is found
 	 */
 	public boolean getAnyIntersection(Ray ray) {
-		return intersect(new IntersectionRecord(), ray, true);	
+		//return intersect(new IntersectionRecord(), ray, true);
 		//TODO#Ray Part 2: uncomment the following line, and comment the previous line out.
-//		return accelStruct.intersect(new IntersectionRecord(), ray, true);
+		return accelStruct.intersect(new IntersectionRecord(), ray, true);
 	}
 	
 	private boolean intersect(IntersectionRecord outRecord, Ray rayIn, boolean anyIntersection) {
@@ -159,10 +159,11 @@ public class Scene {
 		//		    5) Set outRecord to the IntersectionRecord of the first object hit.
 		//		    6) If there was an intersection, return true; otherwise return false.
 
-		boolean ret = false;
+		//boolean ret = false;
 	
-		return ret;
-//		 TODO#Ray Part 2: uncomment the following line, and comment your previous solution out.
-//		 return accelStruct.intersect(outRecord, rayIn, anyIntersection);
+		//return ret;
+//		TODO#Ray Part 2: uncomment the following line, and comment your previous solution out.
+
+		return accelStruct.intersect(outRecord, rayIn, anyIntersection);
 	}
 }

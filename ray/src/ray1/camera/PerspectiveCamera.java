@@ -24,7 +24,11 @@ public class PerspectiveCamera extends Camera {
     //TODO#Ray Task 1: create necessary new variables/objects here, including an orthonormal basis
     //          formed by three basis vectors and any other helper variables 
     //          if needed.
-
+    Vector3d u;
+    Vector3d v;
+    Vector3d w;
+    Vector3d e;
+    Vector3d d;
 
     /**
      * Initialize the derived view variables to prepare for using the camera.
@@ -33,8 +37,16 @@ public class PerspectiveCamera extends Camera {
         // TODO#Ray Task 1: Fill in this function.
         // 1) Set the 3 basis vectors in the orthonormal basis,
         // based on viewDir and viewUp
+
+        Vector3d viewDir = new Vector3d((double)getViewDir().x, (double)getViewDir().y, (double)getViewDir().z);
+        Vector3d viewPoint = new Vector3d((double)getViewPoint().x, (double)getViewPoint().y, (double)getViewPoint().z);
+        Vector3d viewUp = new Vector3d((double)getViewUp().x, (double)getViewUp().y, (double)getViewUp().z);
+        d = (new Vector3d(viewDir.x, viewDir.y, viewDir.z)).normalize();
+        w = d.clone().negate().normalize();
+        u = viewUp.clone().cross(w.clone()).normalize();
+        v = w.clone().cross(u.clone()).normalize();
+        e = viewPoint.clone();
         // 2) Set up the helper variables if needed
-        
     }
 
     /**
@@ -49,11 +61,16 @@ public class PerspectiveCamera extends Camera {
         // 1) Transform inU so that it lies between [-viewWidth / 2, +viewWidth / 2] 
         //    instead of [0, 1]. Similarly, transform inV so that its range is
         //    [-vieHeight / 2, +viewHeight / 2]
+        double width = getViewWidth();
+        double height = getViewHeight();
+        double transInU = ((double)inU/1.) * width - width / 2.;
+        double transInV = ((double)inV/1.) * height - height / 2.;
         // 2) Set the origin field of outRay for a perspective camera.
+        Vector3d rayDir = u.clone().mul(transInU).add(v.clone().mul(transInV)).sub(w.clone().mul(getProjDistance()));
         // 3) Set the direction field of outRay for an perspective camera. This
         //    should depend on your transformed inU and inV and your basis vectors,
         //    as well as the projection distance.
-
-
+        outRay.set(e.clone(), rayDir);
+              
     }
 }
