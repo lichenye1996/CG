@@ -41,19 +41,19 @@ public class ScaleManipulator extends Manipulator {
 			Vector3 malDir = new Vector3(1, 0, 0);
 			float t1 = this.getAxisT(malOrig, malDir, viewProjection, curMousePos);
 			float t2 = this.getAxisT(malOrig, malDir, viewProjection, lastMousePos);
-			this.reference.translation.set(0, 0, this.reference.translation.get(0, 0) * (t1/t2));
+			this.reference.scale.set(0, 0, this.reference.scale.get(0, 0) * (t1/t2));
 		} else if (this.axis == ManipulatorAxis.Y) {
 			Vector3 malOrig = new Vector3(0, 0, 0);
 			Vector3 malDir = new Vector3(0, 1, 0);
 			float t1 = this.getAxisT(malOrig, malDir, viewProjection, curMousePos);
 			float t2 = this.getAxisT(malOrig, malDir, viewProjection, lastMousePos);
-			this.reference.translation.set(1, 1, this.reference.translation.get(1, 1) * (t1/t2));
+			this.reference.scale.set(1, 1, this.reference.scale.get(1, 1) * (t1/t2));
 		} else if (this.axis == ManipulatorAxis.Z) {
 			Vector3 malOrig = new Vector3(0, 0, 0);
 			Vector3 malDir = new Vector3(0, 0, 1);
 			float t1 = this.getAxisT(malOrig, malDir, viewProjection, curMousePos);
 			float t2 = this.getAxisT(malOrig, malDir, viewProjection, lastMousePos);
-			this.reference.translation.set(2, 2, this.reference.translation.get(2, 2) * (t1/t2));
+			this.reference.scale.set(2, 2, this.reference.scale.get(2, 2) * (t1/t2));
 		}
 		// A3 SOLUTION END
 	}
