@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-javadoc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-linux.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-macos.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-windows.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-javadoc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-linux.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-macos.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-windows.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-javadoc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-linux.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-macos.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-windows.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/manip/lib/lwjgl.jar!/" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/manip/src" expected_position="0" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/manip/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/manip">
+      <sourceFolder url="file://$MODULE_DIR$/manip/src" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library">
+      <library name="lwjgl-glfw-javadoc.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-javadoc.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-glfw-natives-linux.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-linux.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-glfw-natives-macos.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-macos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-glfw-natives-windows.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw-natives-windows.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-glfw.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-glfw.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-javadoc.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-javadoc.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-natives-linux.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-linux.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-natives-macos.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-macos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-natives-windows.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-natives-windows.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-opengl-javadoc.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-javadoc.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-opengl-natives-linux.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-linux.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-opengl-natives-macos.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-macos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-opengl-natives-windows.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl-natives-windows.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-opengl.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl-opengl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/manip/lib/lwjgl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/AppleJavaExtensions.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/asm-debug-all.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/jinput.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_test.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_util_applet.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_util.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lwjgl-debug.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lwjgl.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/lzma.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-3.0.0-javadoc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-3.0.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-test.jar!/" />
+    <src_description expected_position="1">
+      <src_folder value="file://$MODULE_DIR$/ray/src" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/ray/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/ray">
+      <sourceFolder url="file://$MODULE_DIR$/ray/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="AppleJavaExtensions.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/AppleJavaExtensions.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="asm-debug-all.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/asm-debug-all.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="jinput.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/jinput.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl_test.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_test.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl_util_applet.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_util_applet.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl_util.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lwjgl_util.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl-debug.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lwjgl-debug.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lwjgl.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lwjgl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="lzma.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/lzma.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="openexrjni-3.0.0-javadoc.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-3.0.0-javadoc.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="openexrjni-3.0.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-3.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://ray/deps/native/macosx" />
+        </NATIVE>
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="openexrjni-test.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/ray/deps/lib/openexrjni-test.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="junit4">
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
