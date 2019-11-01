@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 import egl.math.Vector3d;
+import org.lwjgl.Sys;
 import ray1.IntersectionRecord;
 import ray1.Ray;
 import ray1.surface.Surface;
@@ -40,7 +41,7 @@ public class Bvh implements AccelStruct {
 	 * found outRecord is unchanged.
 	 *
 	 * @param outRecord the output IntersectionRecord
-	 * @param ray the ray to intersect
+	 * @param rayIn the ray to intersect
 	 * @param anyIntersection if true, will immediately return when found an intersection
 	 * @return true if and intersection is found.
 	 */
@@ -66,17 +67,41 @@ public class Bvh implements AccelStruct {
 		
 		// ==== Step 1 ====
 		// Check whether the ray intersect with the current node's bounding box, if not return false
-
-
-		
+		if (!node.intersects(rayIn)) return false;
 		
 		// ==== Step 2 ====
 		// Check if current node is leaf
 		// If current node is leaf, loop over all the surface in this leaf, do surface intersection check, find the first intersection
-		// If current node is not a leaf, call intersectHelper recursively for left and right child of the node, 
-		
-		boolean ret = false;
-		return ret;
+		// If current node is not a leaf, call intersectHelper recursively for left and right child of the node,
+		Ray myRay = new Ray();
+		myRay.origin.set(rayIn.origin);
+		myRay.direction.set(rayIn.direction);
+		myRay.start = rayIn.start;
+		myRay.end = rayIn.end;
+
+		boolean isHit = false;
+		if (node.isLeaf()) {
+			int start = node.surfaceIndexStart;
+			int end = node.surfaceIndexEnd;
+			for (int i = start; i < end; i++) {
+				boolean tempHit = surfaces[i].intersect(outRecord, myRay);
+				isHit =  tempHit || isHit;
+				if (isHit){
+					myRay.end = outRecord.t;
+				}
+				if (anyIntersection && isHit) {
+					return true;
+				}
+			}
+		}
+		else {
+			boolean is1 = intersectHelper(node.child[0], outRecord, myRay, anyIntersection);
+			myRay.end = outRecord.t;
+			boolean is2 = intersectHelper(node.child[1], outRecord, myRay, anyIntersection);
+			boolean tempHit = is1 || is2;
+			isHit = tempHit;
+		}
+		return isHit;
 	}
 
 
@@ -109,28 +134,117 @@ public class Bvh implements AccelStruct {
 		// Find out the BIG bounding box enclosing all the surfaces in the range [start, end)
 		// and store them in minB and maxB.
 		// Hint: To find the bounding box for each surface, use getMinBound() and getMaxBound() */
+		Vector3d minB = new Vector3d(1f/0,1f/0,1f/0);
+		Vector3d maxB = new Vector3d(-1f/0,-1f/0,-1f/0);
+		for (int i = start; i < end; i ++) {
+			Surface surf = surfaces[i];
+			minB.set(Math.min(minB.x, surf.getMinBound().x), Math.min(minB.y, surf.getMinBound().y), Math.min(minB.z, surf.getMinBound().z));
+			maxB.set(Math.max(maxB.x, surf.getMaxBound().x), Math.max(maxB.y, surf.getMaxBound().y), Math.max(maxB.z, surf.getMaxBound().z));
+
+		}
+
 
 		// ==== Step 2 ====
 		// Check for the base case. 
 		// If the range [start, end) is small enough (e.g. less than or equal to 10), just return a new leaf node.
+		if (end - start <= 10) {
+			BvhNode node = new BvhNode(minB, maxB, null, null, start, end);
+			return node;
+		}
 
 		
 		// ==== Step 3 ====
 		// Figure out the widest dimension (x or y or z).
 		// If x is the widest, set widestDim = 0. If y, set widestDim = 1. If z, set widestDim = 2.
+		int widestDim;
+		double widthX = maxB.x - minB.x;
+		double widthY = maxB.y - minB.y;
+		double widthZ = maxB.z - minB.z;
+		if (widthX >= widthY && widthX >= widthZ) {
+			widestDim = 0;
+		}
+		else if (widthY >= widthZ && widthY >= widthX) {
+			widestDim = 1;
+		}
+		else {
+			widestDim = 2;
+		}
 
 		
 		// ==== Step 4 ====
 		// Sort surfaces according to the widest dimension.
+		// Bubble Sort
+
+//		for (int i = start; i< end; i++) {
+//			for (int j = end - 1; j > i; j--) {
+//				if (surfaces[j].averagePosition.get(widestDim) > surfaces[j-1].averagePosition.get(widestDim)) {
+//					Surface temp = surfaces[j];
+//					surfaces[j] = surfaces[j - 1];
+//					surfaces[j - 1] = temp;
+//				}
+//			}
+//		}
+		//HeapSort
+		Surface[] tempArr = Arrays.copyOfRange(surfaces, start, end);
+		heapSort(tempArr, widestDim);
+		int count = 0;
+		for (int i=start; i<end; i++) {
+			surfaces[i] = tempArr[count];
+			count += 1;
+		}
 
 
 		// ==== Step 5 ====
 		// Recursively create left and right children.
+		BvhNode node = new BvhNode(minB, maxB, createTree(start, (end + start)/2), createTree((end + start)/2, end), start, end);
 
 
-		return root;
+		return node;
 	}
-	
+
+	private static void heapify(Surface[] array, int length, int i, int dim) {
+		int leftChild = 2*i+1;
+		int rightChild = 2*i+2;
+		int largest = i;
+
+		// if the left child is larger than parent
+		if (leftChild < length && array[leftChild].averagePosition.get(dim) < array[largest].averagePosition.get(dim)) {
+			largest = leftChild;
+		}
+
+		// if the right child is larger than parent
+		if (rightChild < length && array[rightChild].averagePosition.get(dim) < array[largest].averagePosition.get(dim)) {
+			largest = rightChild;
+		}
+
+		// if a swap needs to occur
+		if (largest != i) {
+			Surface temp = array[i];
+			array[i] = array[largest];
+			array[largest] = temp;
+			heapify(array, length, largest, dim);
+		}
+	}
+
+	public static void heapSort(Surface[] array, int dim) {
+		if (array.length == 0) return;
+
+		// Building the heap
+		int length = array.length;
+		// we're going from the first non-leaf to the root
+		for (int i = length / 2-1; i >= 0; i--)
+			heapify(array, length, i, dim);
+
+		for (int i = length-1; i >= 0; i--) {
+			Surface temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
+
+			heapify(array, i, 0, dim);
+		}
+	}
+
+
 	private int maxDepth(BvhNode node) {
 		if (node.isLeaf())
 			return 0;
