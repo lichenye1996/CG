@@ -55,7 +55,6 @@ public class ScaleManipulator extends Manipulator {
 			float t2 = this.getAxisT(malOrig, malDir, viewProjection, lastMousePos);
 			this.reference.scale.set(2, 2, this.reference.scale.get(2, 2) * (t1/t2));
 		}
-
 		// A3 SOLUTION END
 	}
 

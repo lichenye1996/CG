@@ -130,7 +130,6 @@ public class RotationManipulator extends Manipulator {
 			this.reference.rotationZ.set(this.reference.rotationZ.clone().mulBefore(rotation.clone()));
 		}
 
-
 	}
 
 
